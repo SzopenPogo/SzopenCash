@@ -1,0 +1,16 @@
+@import 'assets/style/variables/_font';
+
+//Font Family: Roboto Condensed
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $main-font, sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}
