@@ -1,0 +1,11 @@
+@import 'assets/style/variables/_dimension';
+
+.login {
+  width: 100%;
+  height: $noscroll-height;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}

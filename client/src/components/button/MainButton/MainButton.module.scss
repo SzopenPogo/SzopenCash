@@ -1,0 +1,9 @@
+@import 'assets/style/variables/_color';
+@import 'assets/style/button/_main-button';
+
+
+.main-button {
+  width: 100%;
+  
+  @include main-button();
+}

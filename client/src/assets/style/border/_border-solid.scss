@@ -1,0 +1,23 @@
+@import '../variables/color';
+
+
+@mixin white-border($size) {
+  border: $size solid white;
+}
+
+@mixin washy-white-border($size) {
+  border: $size solid $washy-white;
+}
+
+@mixin invalid-border($size) {
+  border: $size solid $red;
+}
+
+
+@mixin balck-border($size) {
+  border: $size solid $black;
+}
+
+@mixin light-gray-border($size) {
+  border: $size solid $light-gray;
+}

@@ -1,0 +1,34 @@
+@import 'assets/style/border/_border-solid';
+@import 'assets/style/input/_main-input';
+
+$wrapper-border-size: 1px;
+
+.wrapper {
+  width: 100%;
+  .input-wrapper {
+    position: relative;
+    overflow: hidden;
+    @include main-input-container(4rem);
+    padding: .5rem;
+  
+    @include white-border($wrapper-border-size);
+  
+    transition: linear 100ms;
+  
+    label {
+      @include main-label();
+    }
+  
+    input {
+      @include main-input();
+    }
+  }
+  
+  .input-wrapper--active {
+    @include white-border($wrapper-border-size);
+  }
+  
+  .input-wrapper--invalid {
+    @include invalid-border($wrapper-border-size);
+  }
+}
