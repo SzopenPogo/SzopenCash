@@ -8,6 +8,7 @@ import { toggleActive } from "../methods/user/toggleActive";
 import { findByCredentials } from "../statics/user/findByCredentials";
 import bcryptjs from 'bcryptjs';
 import { editUserData } from "../methods/user/editUserData";
+import { USER_NAME_MIN_LENGHT } from "../constants/user/userData";
 
 const userSchema = new Schema<UserModel, UserStatics>({
   userName: {
@@ -16,6 +17,7 @@ const userSchema = new Schema<UserModel, UserStatics>({
     unique: true,
     lowercase: true,
     trim: true,
+    minlength: USER_NAME_MIN_LENGHT
   },
 
   password: {

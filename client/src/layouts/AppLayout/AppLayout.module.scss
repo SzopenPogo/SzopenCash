@@ -1,0 +1,15 @@
+@import 'assets/style/variables/dimension.scss';
+
+.app {
+  width: 100%;
+
+  display: grid;
+  grid-template-rows: $header-height 1fr;
+  grid-template-areas: 'header' 'content';
+
+  .app__content {
+    padding-top: $header-margin;
+    grid-area: content;
+    min-height: $noscroll-height;
+  }
+}

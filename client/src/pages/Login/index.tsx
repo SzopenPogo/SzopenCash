@@ -1,43 +1,28 @@
-import MainForm from 'components/form/MainForm/MainForm';
-import PasswordInput from 'components/input/PasswordInput/PasswordInput';
-import TextInput from 'components/input/TextInput/TextInput';
+import LoginForm from 'components/form/LoginForm/LoginForm';
+import { CLIENT_APPLICATION_ROUTE } from 'data/routes/client/application';
 import MainLayout from 'layouts/MainLayout/MainLayout';
-import { FormEvent, useRef, useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { RootState } from 'store';
 import classes from './index.module.scss';
 
 const Login = () => {
-  const loginRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
-  const [isSubmitActive, setIsSubmitActive] = useState<boolean>(false);
-  //TODO Input validation
-  const loginUserHandler = (event: FormEvent) => {
-    event.preventDefault();
+  const token = useSelector((state: RootState) => state.user.token);
 
-    const loginValue = loginRef.current?.value;
-    const passwordValue = passwordRef.current?.value;
+  useEffect(() => {
+    if(token) {
+      navigate(CLIENT_APPLICATION_ROUTE);
+    }
+  }, [navigate, token])
+  
 
-    console.log(loginValue, passwordValue);
-    
-  }
   return (
     <MainLayout>
       <section className={classes['login']}>
-        <MainForm 
-          onSubmit={loginUserHandler}
-          title='Logowanie'
-          buttonTitle='Zaloguj się'
-          isActive={isSubmitActive}
-        >
-          <TextInput
-            ref={loginRef}
-            title={'Nazwa Użytkownika'}
-          />
-          <PasswordInput
-            ref={passwordRef}
-            title={'Hasło'} 
-          />
-        </MainForm>
+        <LoginForm />
       </section>
     </MainLayout>
   )

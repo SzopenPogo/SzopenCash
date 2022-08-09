@@ -1,7 +1,9 @@
 @import 'assets/style/variables/dimension.scss';
+@import 'assets/style/variables/_color';
 
 .content {
-  max-width: 100%;
-  min-height: $noscroll-height;
-  margin-top: $header-margin;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient($light-blue, $blue);
+  grid-area: content;
 }

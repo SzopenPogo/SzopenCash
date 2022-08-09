@@ -1,5 +1,5 @@
 @import 'assets/style/variables/_font';
-@import 'assets/style/variables/_color';
+@import 'assets/style/variables/_dimension';
 
 //Font Family: Roboto Condensed
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
@@ -13,10 +13,7 @@ body {
 
   margin: 0;
   padding: 0;
-  width: 100vw;
-
-  background-color: $blue;
-  background: linear-gradient($light-blue, $blue);
-
+  min-width: 100vw;
+  
   font-family: $main-font, sans-serif;
 }

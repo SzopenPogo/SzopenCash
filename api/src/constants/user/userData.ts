@@ -1,0 +1,1 @@
+export const USER_NAME_MIN_LENGHT = 4;

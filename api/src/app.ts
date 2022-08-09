@@ -6,6 +6,7 @@ import connectDatabase from "./config/database";
 import routeNotFound from "./middleware/routeNotFound";
 import path from "path";
 import userRouter from "./routes/userRoute";
+import apiDataRouter from "./routes/apiDataRoute";
 
 const app = express();
 
@@ -13,6 +14,9 @@ const app = express();
 connectDatabase();
 app.use(cors());
 app.use(express.json());
+
+// ROUTE /apiData - API Data Router
+app.use('/apiData', apiDataRouter);
 
 // ROUTE /user - User Router
 app.use('/user', userRouter);

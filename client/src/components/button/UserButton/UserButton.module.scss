@@ -1,0 +1,32 @@
+@import 'assets/style/variables/_dimension';
+@import 'assets/style/variables/_transform';
+
+
+.user {
+  cursor: pointer;
+
+  height: 100%;
+  width: 2rem;
+  padding: .5rem;
+
+  background-color: transparent;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  outline: none;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: .5rem;
+
+  transition: linear 100ms;
+
+  @media (min-width: $mobile-width) {
+    &:hover {
+      transform: scale($icon-transform-scale);
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import ToggleVisibilityButton from "components/button/ToggleVisibilityButton/ToggleVisibilityButton";
 import InputWrapper from "components/input/InputWrapper/InputWrapper";
 import useAssignRefs from "hooks/useAssignRefs";
-import { ChangeEvent, forwardRef, useId, useRef, useState } from "react";
+import { ChangeEvent, forwardRef, useEffect, useId, useRef, useState } from "react";
 
 
 interface Props {
@@ -11,6 +11,8 @@ interface Props {
   isReadonly?: boolean;
   isRequired?: boolean;
   minLength?: number;
+  onChange?: (value: string) => void;
+  invalidPasswordMessages?: Array<string>;
 }
 
 const PasswordInput = forwardRef<HTMLInputElement, Props>(({
@@ -19,7 +21,9 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(({
   value = '',
   isReadonly,
   isRequired = false,
-  minLength
+  minLength,
+  onChange,
+  invalidPasswordMessages
 }, ref) => {
   const passwordLocalRef = useRef<HTMLInputElement>(null);
   const passwordRef = useAssignRefs(passwordLocalRef, ref);
@@ -27,6 +31,17 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(({
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [passwordValue, setPasswordValue] = useState<string>(value);
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isPasswordValid, setIsPasswordValid] = useState<boolean>(isValid);
+
+  useEffect(() => {
+
+    // Remove password input border if password value length is 0
+    if(passwordValue.length <= 0) {
+      setIsPasswordValid(true);
+    } else {
+      setIsPasswordValid(isValid);
+    }
+  }, [passwordValue, isValid])
 
   const focusPassword = () => {
     passwordLocalRef.current?.focus();
@@ -44,6 +59,10 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(({
   const passwordValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
     setPasswordValue(newValue);
+
+    if(onChange) {
+      onChange(newValue);
+    }
   }
 
   const togglePasswordVisibility = () => {
@@ -59,7 +78,8 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(({
       isInputFocus={isFocus}
       title={title}
       inputId={passwordId}
-      isValid={isValid}
+      isValid={isPasswordValid}
+      inputInfo={invalidPasswordMessages}
     >
       <input
         ref={passwordRef}

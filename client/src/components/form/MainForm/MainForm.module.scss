@@ -16,6 +16,8 @@
   color: white;
   @include light-shadow();
 
+  transition: linear 100ms;
+
   @media (min-width: $mobile-width) {
     width: 30rem;
   }

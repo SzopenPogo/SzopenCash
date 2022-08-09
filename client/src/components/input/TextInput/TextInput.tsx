@@ -1,6 +1,6 @@
 import InputWrapper from 'components/input/InputWrapper/InputWrapper';
 import useAssignRefs from 'hooks/useAssignRefs';
-import { ChangeEvent, forwardRef, useId, useRef, useState } from 'react';
+import { ChangeEvent, forwardRef, useEffect, useId, useRef, useState } from 'react';
 
 interface Props {
   title: string;
@@ -27,6 +27,18 @@ const TextInput = forwardRef<HTMLInputElement, Props>(({
 
   const [inputValue, setInputValue] = useState<string>(value);
   const [isFocus, setIsFocus] = useState<boolean>(false);
+  const [isInputValid, setIsInputValid] = useState<boolean>(isValid);
+
+  useEffect(() => {
+
+    // Remove invalid input border if input value length is 0
+    if(inputValue.length <= 0) {
+      setIsInputValid(true);
+    } else {
+      setIsInputValid(isValid);
+    }
+  }, [inputValue, isValid])
+  
 
   const inputValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
@@ -57,7 +69,7 @@ const TextInput = forwardRef<HTMLInputElement, Props>(({
       isInputFocus={isFocus}
       title={title}
       inputId={imputId}
-      isValid={isValid}
+      isValid={isInputValid}
     >
       <input
         ref={inputRef}
