@@ -8,4 +8,11 @@
   align-items: center;
   justify-content: center;
 
+  .login__login-wrapper {
+    width: 100%;
+
+    @media (min-width: $mobile-width) {
+      width: 30rem;
+    }
+  }
 }

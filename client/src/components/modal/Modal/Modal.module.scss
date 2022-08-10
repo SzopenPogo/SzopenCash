@@ -1,0 +1,63 @@
+@import 'assets/style/variables/_color';
+@import 'assets/style/variables/_z-index';
+@import 'assets/style/variables/_dimension';
+@import 'assets/style/border/_border-solid';
+@import 'assets/style/variables/_shadow';
+
+.modal {
+  z-index: $modal-z-index;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 100vw;
+  height: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: $light-gray;
+  color: white;
+  @include balck-border(1px);
+  @include light-shadow();
+
+  transition: ease-in 200ms;
+
+  @media (min-width: $mobile-width) {
+    min-width: 15rem;
+    width: auto;
+  }
+
+  .modal--close-button {
+    position: absolute;
+    top: .35rem;
+    right: .35rem;
+
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.enter {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.925);
+}
+
+.enter-active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.exit {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.exit-active {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.925);
+}

@@ -1,5 +1,4 @@
 @import 'assets/style/variables/_color';
-@import 'assets/style/variables/_dimension';
 @import 'assets/style/variables/_shadow';
 
 .form {
@@ -17,10 +16,6 @@
   @include light-shadow();
 
   transition: linear 100ms;
-
-  @media (min-width: $mobile-width) {
-    width: 30rem;
-  }
 
   .form__title {
     margin: 0 0 .5rem 0;

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { USER_FAIL, USER_REQUEST, USER_SUCCESS } from "data/constants/user/user";
 import { USER_TOKEN_COOKIE_NAME } from "data/constants/user/userCookies";
+import { UserData } from "data/interfaces/UserData";
 import Cookies from "js-cookie";
 
 const userTokenStoredCookie = Cookies.get(USER_TOKEN_COOKIE_NAME)
@@ -8,7 +9,7 @@ const tokenCookie = userTokenStoredCookie && userTokenStoredCookie !== 'undefine
   ? userTokenStoredCookie
   : '';
 
-const initialUserData = {
+const initialUserData: UserData = {
   _id: '',
   userName: '',
   isActive: false,
@@ -21,7 +22,9 @@ const userSlice = createSlice({
     loading: false,
     error: '',
     user: initialUserData,
-    token: tokenCookie
+    token: tokenCookie,
+    users: [] as Array<UserData>,
+    selectedUser: {} as UserData
   },
   reducers: {
     login(state, action) {
@@ -86,8 +89,102 @@ const userSlice = createSlice({
           state.error = payload;
           break;
       }
+    },
+    edit(state, action) {
+      const { type, payload } = action.payload;
+      
+      switch (type) {
+        case USER_REQUEST:
+          state.loading = true;
+          state.error = '';
+          break;
+        case USER_SUCCESS:
+          state.loading = false;
+          state.error = '';
+          state.user = payload;
+          break;
+        case USER_FAIL:
+          state.loading = false;
+          state.error = payload;
+          break;
+      }
+    },
+    create(state, action) {
+      const { type, payload } = action.payload;
+      
+      switch (type) {
+        case USER_REQUEST:
+          state.loading = true;
+          state.error = '';
+          break;
+        case USER_SUCCESS:
+          state.loading = false;
+          state.error = '';
+          state.selectedUser = payload;
+          break;
+        case USER_FAIL:
+          state.loading = false;
+          state.error = payload;
+          break;
+      }
+    },
+    getById(state, action) {
+      const { type, payload } = action.payload;
+      
+      switch (type) {
+        case USER_REQUEST:
+          state.loading = true;
+          state.error = '';
+          break;
+        case USER_SUCCESS:
+          state.loading = false;
+          state.error = '';
+          state.selectedUser = payload;
+          break;
+        case USER_FAIL:
+          state.loading = false;
+          state.error = payload;
+          break;
+      }
+    },
+    changeStatus(state, action) {
+      const { type, payload } = action.payload;
+      
+      switch (type) {
+        case USER_REQUEST:
+          state.loading = true;
+          state.error = '';
+          break;
+        case USER_SUCCESS:
+          state.loading = false;
+          state.error = '';
+          state.selectedUser = payload;
+          break;
+        case USER_FAIL:
+          state.loading = false;
+          state.error = payload;
+          break;
+      }
+    },
+    getAll(state, action) {
+      const { type, payload } = action.payload;
+      
+      switch (type) {
+        case USER_REQUEST:
+          state.loading = true;
+          state.error = '';
+          break;
+        case USER_SUCCESS:
+          state.loading = false;
+          state.error = '';
+          state.users = payload;
+          break;
+        case USER_FAIL:
+          state.loading = false;
+          state.error = payload;
+          break;
+      }
     }
-
   }
 });
 

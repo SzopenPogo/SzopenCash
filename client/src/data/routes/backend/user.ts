@@ -7,6 +7,8 @@ export const BACKEND_USER_LOGIN_URL = `${BACKEND_USER_URL}/login`;
 export const BACKEND_USER_LOGOUT_URL = `${BACKEND_USER_URL}/logout`;
 export const BACKEND_USER_LOGOUT_ALL_URL = `${BACKEND_USER_URL}/logoutAll`;
 
+export const BACKEND_USER_CREATE_URL = `${BACKEND_USER_URL}/create`;
+
 export const BACKEND_USER_EDIT_URL = `${BACKEND_USER_URL}/edit`;
 
 export const BACKEND_USER_GET_URL = `${BACKEND_USER_URL}/me`;

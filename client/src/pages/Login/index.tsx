@@ -22,7 +22,9 @@ const Login = () => {
   return (
     <MainLayout>
       <section className={classes['login']}>
-        <LoginForm />
+        <div className={classes['login__login-wrapper']}>
+          <LoginForm />
+        </div>
       </section>
     </MainLayout>
   )
